@@ -24,7 +24,7 @@ common --enable_bzlmod
 Then put this in your `MODULE.bazel`:
 
 ```python
-bazel_dep(name = "swiftlint", version = "0.54.0", repo_name = "SwiftLint")
+bazel_dep(name = "swiftlint", version = "0.61.0", repo_name = "SwiftLint")
 ```
 
 Then you can run SwiftLint with this command:
@@ -127,7 +127,7 @@ you develop your rules.
 You can add it to the bottom of your `MODULE.bazel` file:
 
 ```python
-bazel_dep(name = "rules_xcodeproj", version = "1.4.0")
+bazel_dep(name = "rules_xcodeproj", version = "3.2.0")
 ```
 
 And define a `BUILD` file with this configuration:
@@ -140,7 +140,7 @@ xcodeproj(
     project_name = "SwiftLint",
     top_level_targets = [
         "@SwiftLint//:swiftlint",
-        "@SwiftLint//Tests:ExtraRulesTests",
+        "@SwiftLint//Tests/ExtraRulesTests:ExtraRulesTests",
     ],
 )
 ```

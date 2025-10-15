@@ -6,6 +6,6 @@ xcodeproj(
     tags = ["manual"],
     top_level_targets = [
         "@SwiftLint//:swiftlint",
-        "@SwiftLint//Tests:ExtraRulesTests",
+        "@SwiftLint//Tests/ExtraRulesTests:ExtraRulesTests",
     ],
 )
