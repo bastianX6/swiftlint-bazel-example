@@ -45,6 +45,19 @@ bazel run -c opt @SwiftLint//:swiftlint -- version
 
 ## Custom Rules
 
+Detailed authoring guide (human + LLM):
+
+- [docs/CREATING_SWIFTLINT_RULES.md](docs/CREATING_SWIFTLINT_RULES.md)
+
+Quick summary of the advanced guide:
+
+- Start with `@SwiftSyntaxRule` + `SeverityConfiguration` as the default pattern.
+- Use `explicitRewriter: true` only for deterministic and safe autocorrections.
+- Use `AnalyzerRule` only when compiler/type-check context is truly required.
+- Use `CollectingRule` for multi-file checks that need cross-file aggregation.
+- Keep stable `identifier` values and always include triggering + non-triggering examples.
+- Prefer minimal rules first, then expand behavior/configuration iteratively.
+
 ### Setup
 
 You can wire up SwiftLint to use some custom, private, native SwiftLint

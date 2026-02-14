@@ -60,6 +60,15 @@ bazel run :swiftlint_xcodeproj
 3. Do not hand-edit generated `extra_rules.swift`; it is produced by Bazel `genrule`.
 4. Validate with lint run and `ExtraRulesTests`.
 
+## Advanced rule summary
+
+- Prefer `@SwiftSyntaxRule` + `SeverityConfiguration` as baseline.
+- Use `explicitRewriter: true` only for deterministic corrections.
+- Use `AnalyzerRule` only when compiler arguments/type info are required.
+- Use `CollectingRule` for cross-file logic (collect phase + validate phase).
+- Keep `RuleDescription.identifier` stable and include both triggering/non-triggering examples.
+- See full guide: [docs/CREATING_SWIFTLINT_RULES.md](docs/CREATING_SWIFTLINT_RULES.md)
+
 ## LLM agent constraints
 
 - Make minimal, targeted changes.
