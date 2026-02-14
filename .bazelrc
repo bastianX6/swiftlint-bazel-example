@@ -1,2 +1,3 @@
 common --enable_bzlmod
-build --macos_minimum_os=13
+common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_import,+cc_test,+objc_library,+objc_import,+CcInfo,+cc_common
+build --macos_minimum_os=26

@@ -19,18 +19,28 @@ Make sure that you're using bzlmod by adding this line to your
 
 ```
 common --enable_bzlmod
+common --incompatible_autoload_externally=+cc_library,+cc_binary,+cc_import,+cc_test,+objc_library,+objc_import,+CcInfo,+cc_common
 ```
+
+> Note: The `incompatible_autoload_externally` line is currently required for
+> Bazel 9 compatibility with transitive dependencies.
 
 Then put this in your `MODULE.bazel`:
 
 ```python
-bazel_dep(name = "swiftlint", version = "0.61.0", repo_name = "SwiftLint")
+bazel_dep(name = "swiftlint", version = "0.63.2", repo_name = "SwiftLint")
 ```
 
 Then you can run SwiftLint with this command:
 
 ```console
 bazel run -c opt @SwiftLint//:swiftlint -- --help
+```
+
+To check the exact SwiftLint version resolved by Bazel:
+
+```console
+bazel run -c opt @SwiftLint//:swiftlint -- version
 ```
 
 ## Custom Rules
@@ -106,7 +116,7 @@ Linting 'file.swift' (1/3)
 Linting 'ExtraRules.swift' (3/3)
 file.swift:1:14: warning: Colon Spacing Violation: Colons should be next to the identifier when specifying a type and next to the key in dictionary literals. (colon)
 file.swift:1:5: warning: Forbidden Var Violation: Can't name a variable 'forbidden' (forbidden_var)
-Done linting! Found 2 violations, 0 serious in 3 files.
+Done linting! Found 2 violations, 1 serious in 2 files.
 ```
 
 ### Testing Rules
